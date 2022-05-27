@@ -26,12 +26,12 @@ router.get("/", function (req, res, next) {
                 if (err) {
                   console.log(err);
                 } else {
-                  TranscriptModel.aggregate([{$group:{_id:null,sum_val:{$sum:"$payamt"}}}],function(err,amt){     
-                  res.render("index", {
-                    title: "Transcript management system", dueverification: entdata, duedispatch: verdata, dispdone: totdata,
-                    totalcnt: ttcnt, headertext: "Welcome to the summary page", totamt:amt
-                  });
-                })
+                  TranscriptModel.aggregate([{ $group: { _id: null, sum_val: { $sum: "$payamt" } } }], function (err, amt) {
+                    res.render("index", {
+                      title: "Transcript management system", dueverification: entdata, duedispatch: verdata, dispdone: totdata,
+                      totalcnt: ttcnt, headertext: "Welcome to the summary page", totamt: amt
+                    });
+                  })
                 }
               })
             }
@@ -88,7 +88,7 @@ router.post("/searchrecords/", function (req, res) {
       ],
     };
   } else {
-    var fltrParameter = ({regno:""});
+    var fltrParameter = ({ regno: "" });
     //console.log("This is else part");
   }
   var studentFilter = PassoutModel.find(fltrParameter);
@@ -112,7 +112,7 @@ router.post("/searchrecords/", function (req, res) {
 });
 
 /* ADD RECORD IN TRANSACTION TABLE*/
-router.post("/addrequest/",  (req, res)=> {
+router.post("/addrequest/", (req, res) => {
   TranscriptModel.find({ passout_id: req.body.id }).count(function (err, result) {
     if (err)
       throw err;
@@ -419,7 +419,7 @@ router.get('/details/:id', function (req, res) {
   });
 });
 //ABOUT PAGE
-router.get('/about', (req, res)=> {
+router.get('/about', (req, res) => {
 
   res.render('about', { title: "This is about page" });
 });
@@ -435,8 +435,7 @@ router.get('/deleterecord/:id', function (req, res) {
       TranscriptModel.findOneAndDelete({ _id: req.params.id }, function (err, data) {
         if (err) {
           res.redirect("../reqlist");
-        } else
-         {
+        } else {
           res.redirect("../reqlist");
         }
       })
