@@ -435,7 +435,8 @@ router.get('/deleterecord/:id', function (req, res) {
       TranscriptModel.findOneAndDelete({ _id: req.params.id }, function (err, data) {
         if (err) {
           res.redirect("../reqlist");
-        } else {
+        } else
+         {
           res.redirect("../reqlist");
         }
       })
