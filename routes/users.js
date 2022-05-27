@@ -437,7 +437,6 @@ router.get('/deleterecord/:id', function (req, res) {
           res.redirect("../reqlist");
         } else {
           res.redirect("../reqlist");
-          console.log("hi");
         }
       })
     }
