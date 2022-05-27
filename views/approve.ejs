@@ -1,0 +1,136 @@
+<title>
+    <%= title %>
+</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+<link rel='stylesheet' href='/stylesheets/style.css'>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<%- include('header'); -%>
+    <section class="featured">
+        <div class="content-wrapper">
+            <h1 id="myHeader">
+                <%= title %>
+            </h1>
+        </div>
+    </section>
+    <hr>
+    </p>
+    <form action="/verify/" method="POST">
+        <table style="margin-left:auto;margin-right:auto;">
+            <input type="hidden" value="<%= transcripts[0]._id %>" name="id">
+            <tbody>
+                <tr>
+                    <td>Name</td>
+                    <td>:</td>
+                    <td>
+                        <strong><%= transcripts[0].passdata.name %></strong>
+                    </td>
+                    <td>Dept</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].passdata.deptcode %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Registration no.</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].passdata.regno %>
+                    </td>
+                    <td>Session</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].passdata.sess %>
+                    </td>
+                </tr>
+                <tr>
+                <tr>
+                    <td>Certificate No.</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].passdata.certificateno %>
+                    </td>
+                    <td>ID No.</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].passdata.idno %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Certifiate issue date</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].passdata.issuedate %>
+                    </td>
+                    <td>Class</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].passdata.class %>&nbsp; <%= transcripts[0].passdata.class_div %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Percentage</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].passdata.percentage %> %
+                    </td>
+                    <td>CGPA</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].passdata.cgpa %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Grade</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].passdata.grade %>
+                    </td>
+                    <td>Year of Passing</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].passdata.yearofpassing %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Contact number</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].contactno %>
+                    </td>
+                    <td>Entry Date</td>
+                    <td>:</td>
+                    <td>
+                        <%= moment(transcripts[0].entrydt).format( 'DD-MMMM-YYYY' ) %>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Email ID</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].email_id %>
+                    </td>
+                    <td>Purpose</td>
+                    <td>:</td>
+                    <td>
+                        <%= transcripts[0].aftersxc %>
+                    </td>
+                </tr>
+                <tr>
+                    <td><b>Enter passcode to approve</b></td>
+                    <td>:</td>
+                    <td>
+                        <input type="password" id="txtpwd" name="txtpwd" class="form-control">
+                    </td>
+                    <td><button type="submit" class="btn btn-success">
+                            <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Verify
+                        </button>
+                    </td>
+                    <td colspan="2" style="font-weight: bold; color:red; text-decoration: underline; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"> <%= updtmsg %></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+    <%- include('footer'); -%>

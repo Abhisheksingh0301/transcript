@@ -1,0 +1,83 @@
+<!-- <a href="/">Home</a> | <a href="/add">Add</a> | <a href="/display">Display</a> -->
+
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=Lemonada&family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<div class="header">
+  <table>
+    <tr>
+      <td style="width:25%"><img src='/images/sxclogo.png' alt='No image' width="150px" height="150px"></td>
+      <td style="width:75%">
+        <h1 id="h1header">Controller of Exams. office</h1>
+      </td>
+    </tr>
+  </table>
+
+</div>
+
+<!-- <ul class="nav justify-content-end">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="/index">Home</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/reqpage">Request</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/reqlist">Approve</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link disabled">Dispatch</a>
+  </li>
+</ul> -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#">Navbar</a> -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/index">Home</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
+            aria-expanded="false" aria-haspopup="true">
+            Request
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/reqpage">Add new</a></li>
+            <li><a class="dropdown-item" href="/reqlist">List</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Dispatch
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/verifylist">Verified transcripts</a></li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            Reports
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="/showall">Show all</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/about">About <span class="sr-only"></span></a>
+        </li>
+      </ul>
+      <!-- <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> -->
+    </div>
+  </div>
+</nav>

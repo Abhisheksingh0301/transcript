@@ -1,0 +1,108 @@
+<title>
+    <%= title %>
+</title>
+
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+    <script src="https://kit.fontawesome.com/00d76a4bef.js" crossorigin="anonymous"></script>
+    <link rel='stylesheet' href='/stylesheets/style.css'>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <script src="/js/jquery.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+</head>
+
+<%- include('header'); -%>
+    <section class="featured">
+        <div class="content-wrapper">
+            <h1 id="myHeader">
+                <%= title %>
+            </h1>
+        </div>
+    </section>
+    <hr>
+    <% if(transcripts.length>0){ %>
+        <table class="table table-hover" style="border:1px solid black;margin-left:auto;margin-right:auto;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Dept</th>
+                    <th>Session</th>
+                    <th>Roll</th>
+                    <th>Registration no</th>
+                    <th>Contact no</th>
+                    <th>Entry date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="myTable">
+                <tr>
+                    <% for (var i=0; i<transcripts.length; i++){ %>
+                        <td>
+                            <%= transcripts[i].passdata.name %>
+                        </td>
+                        <td>
+                            <%= transcripts[i].passdata.deptcode %>
+                        </td>
+                        <td>
+                            <%= transcripts[i].passdata.sess %>
+                        </td>
+                        <td>
+                            <%= transcripts[i].passdata.roll %>
+                        </td>
+                        <td>
+                            <%= transcripts[i].passdata.regno %>
+                        </td>
+                        <td>
+                            <%= transcripts[i].contactno %>
+                        </td>
+                        <td>
+                            <%= moment(transcripts[i].entrydt).format( 'DD-MMM-YYYY' ) %>
+                        </td>
+                        <td>
+                            <a href='/approvepage/<%= transcripts[i]._id %>'><i class="fa fa-check"
+                                    aria-hidden="true"></i></a> &nbsp;
+                            <a href='/deleterecord/<%= transcripts[i]._id %>'><i class="fa fa-trash"
+                                    aria-hidden="true"></i></a>
+                        </td>
+                </tr>
+                <% } %>
+
+            </tbody>
+        </table>
+        <div class="row  container-fluid">
+            <% for (var i=0; i<transcripts.length; i++){ %>
+                <div class="mx-2 my-2 card border-dark mb-3" style="width: 28rem; ">
+                    <div class="card-body" style="background-color: #f3f2ae;">
+                        <h5 class="card-title" style="font-family:'Times New Roman', Times, serif; text-align:center; 
+                            background-color:rgb(165, 165, 243); font-weight: bold;">
+                            <%= transcripts[i].passdata.name %> <br>
+                                <i class="fa fa-mobile" aria-hidden="true"></i> : <%= transcripts[i].contactno %>
+                        </h5>
+                        <div style="float: left; width:70%;">
+                            <p class="card-text"
+                                style="font-family: Verdana, Geneva, Tahoma, sans-serif; color:#5c081d">
+                                <%= transcripts[i].passdata.regno %> ( <%= transcripts[i].passdata.sess %>) <br>
+                                        Roll:<%= transcripts[i].passdata.roll %> (<%= transcripts[i].passdata.deptcode
+                                                %>) <br>
+                                                Entry date : <%= moment(transcripts[i].entrydt).format( 'DD-MMM-YYYY' )
+                                                    %> <br>
+                            </p>
+                        </div>
+                        <div style="float: right; width: 30%;">
+                            <img src="https://webstockreview.net/images/clipart-boy-child-5.png" alt="Search"
+                                width="110%">
+                        </div>
+                        <div style="float:left" class="mx-2 mt-4 px-2">
+                            <a href="/approvepage/<%= transcripts[i]._id %>" class="btn btn-success"><i
+                                    class="fa fa-check" aria-hidden="true"></i> &nbsp;Approve</a>
+                            <a href="/deleterecord/<%= transcripts[i]._id %>" class="btn btn-danger"><i
+                                    class="fa fa-trash" aria-hidden="true"></i>Delete</a>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+        <% } else { %>
+            <h3 style="font:bold;color: darkred;font-family: monospace;">No records found</h3>
+            <% } %>
+                <%- include('footer'); -%>

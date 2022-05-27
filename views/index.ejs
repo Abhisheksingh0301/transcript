@@ -1,0 +1,46 @@
+<title>
+    <%= title %>
+</title>
+<link rel='stylesheet' href='/stylesheets/style.css'>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<%- include('header'); -%>
+    <section class="featured">
+        <div class="content-wrapper">
+            <h1 id="myHeader">
+                <%= title %>
+            </h1>
+        </div>
+    </section>
+    <h2 style="text-align: center; font-family: cursive; color: crimson;">
+        <%= headertext %>
+    </h2>
+    <table class="table table-hover" style="border:1px solid black;margin-left:auto;margin-right:auto; width:40%;">
+        <tr>
+            <th>Ready for verification</th>
+            <th>Ready for dispatch</th>
+            <th>Total dispatch</th>
+            <th>Total records</th>
+            <th>Total payment done till now</th>
+        </tr>
+        <tr>
+            <td style="text-align:center">
+                <%= dueverification %>
+            </td>
+            <td style="text-align:center">
+                <%= duedispatch %>
+            </td>
+            <td style="text-align:center">
+                <%= dispdone %>
+            </td>
+            <td style="text-align:center">
+                <%= totalcnt %>
+            </td>
+            <td style="text-align:center">
+                <%= totamt[0].sum_val %>
+            </td>
+        </tr>
+    </table>
+    <%- include('footer'); -%>

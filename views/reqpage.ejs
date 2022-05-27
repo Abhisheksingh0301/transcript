@@ -1,0 +1,200 @@
+<title>
+  <%= title %>
+</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+<link rel="stylesheet" href="/stylesheets/style.css" />
+<link href="/css/bootstrap.min.css" rel="stylesheet" />
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<%- include('header'); -%>
+  <section class="featured">
+    <div class="content-wrapper">
+      <h1 id="myHeader">
+        <%= title %>
+      </h1>
+    </div>
+  </section>
+  <hr />
+  <div class="navbar">
+    <div class="col-md-12">
+      <form action="/searchrecords/" method="POST">
+        <table>
+          <tr>
+            <td>
+              <div class="form-floating">
+                <input type="text" id="txtreg" name="txtreg" class="form-control" style="
+                font-weight: bold;
+                color: darkgreen;
+                font-family: 'Times New Roman', Times, serif;
+              " placeholder="Registration no." value="<%= reg %>" />
+                <label for="txtreg">Registration no.</label>
+              </div>
+            </td>
+            <td>
+              <div class="form-floating">
+                <input type="text" id="txtsessn" name="txtsessn" class="form-control" style="
+                font-weight: bold;
+                color: darkgreen;
+                font-family: 'Times New Roman', Times, serif;
+              " placeholder="Session" value="<%= ssn %>" />
+                <label for="txtsessn">Session</label>
+              </div>
+            </td>
+            <td>
+              <div class="form-floating">
+                <input type="text" id="txtdept" name="txtdept" class="form-control" style="
+                font-weight: bold;
+                color: darkgreen;
+                font-family: 'Times New Roman', Times, serif;
+              " style="text-transform: uppercase" placeholder="Department code" value="<%= dp %>" />
+                <label for="txtdept">Department code</label>
+              </div>
+            </td>
+            <td>
+              <button type="submit" class="btn btn-success">
+                <i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+    <hr>
+    <% if(passouts.length>0){ %>
+      <form action="/addrequest/" method="POST">
+        <table style="margin-left:auto;margin-right:auto;">
+          <input type="hidden" name="id" value="<%= passouts[0]._id %>">
+          <tr>
+            <td><label for="txtname">Name:</label></td>
+            <td colspan="5">
+              <input id="txtname" type="text" value="<%= passouts[0].name %>" name="txtname" readonly
+                class="form-control" style="font-weight: bold; color: darkblue" />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="txtdegree">Degree:</label></td>
+            <td colspan="5">
+              <input id="txtdegree" type="text" value="<%= passouts[0].degree %>" name="txtdegree" readonly
+                class="form-control" style="font-weight: bold; color: darkblue" />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="txtROLL">Roll:</label></td>
+            <td>
+              <input id="txtROLL" type="text" value="<%= passouts[0].roll %>" name="txtROLL" readonly
+                class="form-control" style="font-weight: bold; color: darkblue" />
+            </td>
+            <td><label for="txtpassyr">Year of Passing:</label></td>
+            <td>
+              <input id="txtpassyr" type="text" value="<%= passouts[0].yearofpassing %>" name="txtpassyr" readonly
+                class="form-control" style="font-weight: bold; color: darkblue" />
+            </td>
+            <td><label for="txtgrade">Grade</label></td>
+            <td>
+              <input id="txtgrade" type="text" value="<%= passouts[0].grade %>" name="txtgrade" readonly
+                class="form-control" style="font-weight: bold; color: darkblue" />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="txtclass">Class</label></td>
+            <td>
+              <input id="txtgrade" type="text" value="<%= passouts[0].class %>" name="txtgrade" readonly
+                class="form-control" style="font-weight: bold; color: darkblue" />
+            </td>
+            <td><label for="txtdiv">Division</label></td>
+            <td>
+              <input id="txtgrade" type="text" value="<%= passouts[0].class_div %>" name="txtgrade" readonly
+                class="form-control" style="font-weight: bold; color: darkblue" />
+            </td>
+            <td><label for="txtperc">Percentage</label></td>
+            <td>
+              <input id="txtperc" type="text" value="<%= passouts[0].percentage %>" name="txtperc" readonly
+                class="form-control" style="font-weight: bold; color: darkblue" />
+            </td>
+          </tr>
+          <tr>
+            <td><label for="txtissd">Issue Date</label></td>
+            <td colspan="3">
+              <input id="txtperc" type="text" value="<%= passouts[0].issuedate %>" name="txtperc" readonly
+                class="form-control" style="font-weight: bold; color: darkblue" />
+            </td>
+            <td><label for="txtcgpa">CGPA</label></td>
+            <td>
+              <input id="txtcgpa" type="text" value="<%= passouts[0].cgpa %>" name="txtcgpa" readonly
+                class="form-control" style="font-weight: bold; color: darkblue" />
+            </td>
+          </tr>
+          <tr>
+          <tr>
+            <th colspan="6">Information section</th>
+          </tr>
+          <tr>
+            <td><label for="txtappfor">Applied for</label></td>
+            <td>
+              <select id="txtappfor" name="txtappfor" class="form-control" required
+                style="font-weight: bold; color:indigo">
+                <option value="0"> Please select</option>
+                <option value='W.E.S.'> W.E.S. </option>
+                <option value='N.A.S.B.A.'> N.A.S.B.A. </option>
+                <option value='Other'> Other </option>
+              </select>
+            </td>
+            <td><label for="txtappno">Application number</label></td>
+            <td>
+              <input id="txtappno" type="text" name="txtappno" class="form-control"
+                style="font-weight: bold; color:indigo" />
+            </td>
+            <td><label for="txtmobile">Mobile</label></td>
+            <td>
+              <input id="txtmobile" type="tel" pattern="[0-9]{10}" name="txtmobile" required class="form-control"
+                placeholder="10 digit mobile number" style="font-weight: bold; color:indigo" />
+            </td>
+
+            </td>
+          </tr>
+          <tr>
+            <td><label for="txtemail">Email ID</label></td>
+            <td>
+              <input id="txtemail" type="email" name="txtemail" class="form-control" required
+                style="font-weight: bold; color:indigo" />
+            </td>
+            <td><label for="txtentrydt">Entry Date</label></td>
+            <td>
+              <input id="txtentrydt" type="Date" required name="txtentrydt"
+                value="<%= moment(curdt).format( 'YYYY-MM-DD') %>" class=" form-control"
+                style="font-weight: bold; color:indigo" />
+            <td><label for="txtaftrsxc">Purpose</label></td>
+            <td>
+              <input id="txtaftrsxc" type="text" name="txtaftrsxc" class="form-control"
+                style="font-weight: bold; color:indigo" />
+            </td>
+          </tr>
+          <td><label for="txtpayamt">Payment amount</label></td>
+          <td>
+            <input id="txtpayamt" type="number" required name="txtpayamt" class=" form-control"
+              style="font-weight: bold; color:indigo" />
+          </td>
+          <td><label for="txtpayid">Payment id</label></td>
+          <td>
+            <input id="txtpayid" type="text" required name="txtpayid" class=" form-control"
+              style="font-weight: bold; color:indigo" />
+          </td>
+          <td></td>
+          <td><button type="submit" class="btn btn-success">
+              <i class="fa fa-plus" aria-hidden="true"></i>&nbsp;Add
+            </button></td>
+        </table>
+      </form>
+  </div>
+  <%} else if(reg=="" ) { %>
+    <h3 style="font:bold"></h3>
+
+    <% } else { %>
+      <h3 style="font:bold;color: darkred;font-family: monospace;">No records found</h3>
+      <% } %>
+        <!-- <%= passouts.length %> -->
+        <br>
+        <hr>
+        <%- include('footer'); -%>

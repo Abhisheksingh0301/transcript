@@ -1,0 +1,113 @@
+<title>
+    <%= title %>
+</title>
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
+<script src="https://kit.fontawesome.com/00d76a4bef.js" crossorigin="anonymous"></script>
+<link rel='stylesheet' href='/stylesheets/style.css'>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+
+<%- include('header'); -%>
+    <section class="featured">
+        <div class="content-wrapper">
+            <h1 id="myHeader">
+                <%= title %>
+            </h1>
+        </div>
+    </section>
+    <hr>
+    <form action="/searchbydate/" method="POST">
+        <table style="border:0px ;margin-left:auto;margin-right:auto;">
+            <tr>
+                <td>
+                    <div class="form-floating">
+                        <input type="date" id="txtdtfrom" name="txtdtfrom" class="form-control"
+                            value="<%= moment(dtfrm).format( 'YYYY-MM-DD') %>"
+                            style="font-weight: bold; color: darkblue">
+                        <label for="txtdtfrom">Date from</label>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-floating">
+                        <input type="date" id="txtdtupto" name="txtdtupto" class="form-control"
+                            value="<%= moment(dtupto).format( 'YYYY-MM-DD') %>"
+                            style="font-weight: bold; color: darkblue">
+                        <label for="txtdtupto">Date upto</label>
+                    </div>
+                </td>
+                <td>
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search
+                    </button>
+                </td>
+                <td>Search by Entry date</td>
+            </tr>
+        </table>
+    </form>
+    <% if(transcripts.length>0){ %>
+        <table class="table table-hover" style="border:1px solid black;margin-left:auto;margin-right:auto;">
+            <tr>
+                <th>Name</th>
+                <th>Dept</th>
+                <th>Session</th>
+                <th>Registration no</th>
+                <th>Contact no</th>
+                <th>Entry date</th>
+                <th>Verification Date</th>
+                <th>Dispatch Date</th>
+                <th>&nbsp;</th>
+            </tr>
+            <tbody id="myTable">
+                <tr>
+                    <% for (var i=0; i<transcripts.length; i++){ %>
+                        <td>
+                            <%= transcripts[i].passdata.name %>
+                        </td>
+                        <td>
+                            <%= transcripts[i].passdata.deptcode %>
+                        </td>
+                        <td>
+                            <%= transcripts[i].passdata.sess %>
+                        </td>
+                        <td>
+                            <%= transcripts[i].passdata.regno %>
+                        </td>
+                        <td>
+                            <%= transcripts[i].contactno %>
+                        </td>
+                        <td>
+                            <%= moment(transcripts[i].entrydt).format( 'DD-MM-YY' ) %>
+                        </td>
+                        <td>
+                            <% if(transcripts[i].verificationdate !=null){ %>
+                                <%= moment(transcripts[i].verificationdate).format( 'DD-MM-YY' ) %>
+                                    <% } else { %>
+                                        &nbsp;
+                                        <% } %>
+                        </td>
+                        <td>
+                            <% if(transcripts[i].dispatchdt !=null){ %>
+                                <%= moment(transcripts[i].dispatchdt).format( 'DD-MM-YY' ) %>
+                                    <% } else { %>
+                                        &nbsp;
+                                        <% } %>
+                        </td>
+                        <td>
+                            <% if(transcripts[i].dispatchdt !=null){ %>
+                                <a href='/details/<%= transcripts[i]._id %>'> <i class="fa fa-eye"></i></a>
+                                <% } else { %>
+                                    &nbsp;
+                                    <% } %>
+                        </td>
+                </tr>
+                <% } %>
+
+            </tbody>
+        </table>
+        <% } else { %>
+            No records found
+            <% } %>
+                <%- include('footer'); -%>
