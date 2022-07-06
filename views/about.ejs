@@ -9,53 +9,55 @@
     <script src="/js/bootstrap.min.js"></script>
     <h1 id="myHeader"><i class="fa fa-globe" aria-hidden="true"></i>&nbsp;&nbsp;<%= title %>
     </h1>
+    <div>
+        <div class="divLeft"><br><br>
+            <h3>Controller of Examinations office <br>
+                St. Xavier's college (Autonomous) <br>
+                30, Mother Teresa Sarani <br>
+                Kolkata - 700016 <br>
+                Contact no : 033-22551295</h3>
+        </div>
+        <div class="divRight"><br><br>
+            <h2>Location</h2><br>
+            <div class="mapouter">
+                <div class="gmap_canvas">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.806476659986!2d88.35398331495023!3d22.54892103952206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02771aad282713%3A0x62c7778aead16f97!2sSt.%20Xavier&#39;s%20College%20(Autonomous)%20-%20Kolkata!5e0!3m2!1sen!2sin!4v1651049728802!5m2!1sen!2sin"
+                        width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    <!-- <a href="https://123movies-to.net">123movies.</a> -->
+                </div>
+                <style>
+                    .mapouter {
+                        position: relative;
+                        text-align: right;
+                        height: 500px;
+                        /* width: 600px; */
+                        width:auto;
+                    }
 
-    <div class="divLeft"><br><br>
-        <h3>Controller of Examinations office <br>
-        St. Xavier's college (Autonomous) <br>
-        30, Mother Teresa Sarani <br>
-        Kolkata - 700016 <br>
-        Contact no : 033-22551295</h3>
-    </div>
-    <div class="divRight">
-        <h2>Location</h2><br>
-        <div class="mapouter">
-            <div class="gmap_canvas">
-                <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.806476659986!2d88.35398331495023!3d22.54892103952206!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02771aad282713%3A0x62c7778aead16f97!2sSt.%20Xavier&#39;s%20College%20(Autonomous)%20-%20Kolkata!5e0!3m2!1sen!2sin!4v1651049728802!5m2!1sen!2sin"
-                    width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                    referrerpolicy="no-referrer-when-downgrade"></iframe>
-                <!-- <a href="https://123movies-to.net">123movies.</a> -->
+                    .gmap_canvas {
+                        overflow: hidden;
+                        background: none !important;
+                        height: 500px;
+                        /* width: 600px; */
+                        width:auto;
+                    }
+                </style>
             </div>
-            <style>
-                .mapouter {
-                    position: relative;
-                    text-align: right;
-                    height: 500px;
-                    width: 600px;
-                }
-
-                .gmap_canvas {
-                    overflow: hidden;
-                    background: none !important;
-                    height: 500px;
-                    width: 600px;
-                }
-            </style>
         </div>
     </div>
-
     <%- include('footer'); -%>
         <style type="text/css">
             .divLeft {
-                width: 600px;
+                /* width: 600px; */
                 display: block;
                 float: left;
             }
 
             .divRight {
-                width: 800px;
-                display:block;
+                /* width: 800px; */
+                display: block;
                 float: right;
             }
         </style>
