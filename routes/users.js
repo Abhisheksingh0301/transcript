@@ -1,8 +1,10 @@
 var express = require("express");
+var os = require('os');
 var PassoutModel = require("../schema/passout");
 var TranscriptModel = require("../schema/transcript");
 var moment = require('moment');
 const { ObjectId } = require("mongodb");
+const res = require("express/lib/response");
 var router = express.Router();
 var ObjectID = require('mongodb').ObjectID;
 
@@ -41,6 +43,15 @@ router.get("/", function (req, res, next) {
     }
   })
 });
+
+  var cput=os.cpus();
+  global.varcpu=cput[0].model;
+  global.varfreemem=os.freemem()/1048576;
+  global.varosplat=os.platform();
+  global.varosrel=os.release();
+  global.varmem=os.totalmem()/1048576;
+  // var osVer=os.version();
+
 
 //Request page
 router.get("/reqpage", function (req, res, next) {
