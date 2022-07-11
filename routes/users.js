@@ -43,14 +43,13 @@ router.get("/", function (req, res, next) {
     }
   })
 });
-
-  var cput=os.cpus();
-  global.varcpu=cput[0].model;
-  global.varfreemem=os.freemem()/1048576;
-  global.varosplat=os.platform();
-  global.varosrel=os.release();
-  global.varmem=os.totalmem()/1048576;
-  // var osVer=os.version();
+cput=os.cpus();
+global.varcpu = cput[0].model;
+global.varfreemem = (os.freemem() / 1048576).toFixed(2);
+global.varosplat = os.platform();
+global.varosrel = os.release();
+global.varmem = (os.totalmem() / 1048576).toFixed(2);
+// var osVer=os.version();
 
 
 //Request page

@@ -2,7 +2,27 @@
 
 <head>
   <link href="https://fonts.googleapis.com/css2?family=Lemonada&family=Pacifico&display=swap" rel="stylesheet">
+  <script type="text/javascript">
+    function startTime() {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      // add a zero in front of numbers<10
+      m = checkTime(m);
+      s = checkTime(s);
+      document.getElementById('txttime').innerHTML = h + ":" + m + ":" + s;
+      t = setTimeout('startTime()', 500);
+    }
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i;
+      }
+      return i;
+    }
+  </script>
 </head>
+
 <div class="header">
   <table>
     <tr>
@@ -43,7 +63,7 @@
           <a class="nav-link active" aria-current="page" href="/index">Home</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" 
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
             aria-expanded="false" aria-haspopup="true">
             Request
           </a>
@@ -81,3 +101,7 @@
     </div>
   </div>
 </nav>
+
+<body onload="startTime()">
+  <div style="text-align: right;" id="txttime"></div>
+</body>
