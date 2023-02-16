@@ -3,8 +3,12 @@ var os = require('os');
 var PassoutModel = require("../schema/passout");
 var TranscriptModel = require("../schema/transcript");
 var moment = require('moment');
+var climate = require('city-weather');
 const { ObjectId } = require("mongodb");
+var pincode = require('pincode');
 const res = require("express/lib/response");
+const { request } = require("http");
+const { url } = require("inspector");
 var router = express.Router();
 var ObjectID = require('mongodb').ObjectID;
 
@@ -43,7 +47,7 @@ router.get("/", function (req, res, next) {
     }
   })
 });
-cput=os.cpus();
+cput = os.cpus();
 global.varcpu = cput[0].model;
 global.varfreemem = (os.freemem() / 1048576).toFixed(2);
 global.varosplat = os.platform();
@@ -452,6 +456,42 @@ router.get('/deleterecord/:id', function (req, res) {
     }
   })
 })
+
+router.get('/sms/', function (req, res) {
+  //res.redirect("../reqlist");
+  var message = "Please complete your EVALUATION by the last date. Thank you [COE, St. Xavier's College, Kolkata]" +
+    "APIKEY=" + "WJLAskzsrJF" +
+    "&MobileNo=" + "9239042405" + "&SenderID=" + "SXCKOL" +
+    "&Message=" + URLEncoder.encode(message, "UTF-8") +
+    "&ServiceName=" + "TEMPLATE_BASED";
+
+});
+
+router.get('/utilities', (req, res) => {
+  res.render('utilities', { maxtemp: "", mintemp: "", actualtemp: "", description: "", city: "", title: "Weather Report" })
+});
+router.post('/utilities', (req, res) => {
+  var city = req.body.txttown;
+  console.log(city);
+  climate.getMaximumTemp(city, function (maxtemp) {
+    console.log("Maximum temperature: " + maxtemp);
+    climate.getClimateDescription(city, function (description) {
+      console.log("Climate description: " + description);
+      climate.getActualTemp(city, function (actualtemp) {
+        console.log("Actual temperature: " + actualtemp);
+        climate.getMinimumTemp(city, function (mintemp) {
+          console.log("Minimum temperature: " + mintemp);
+          res.render('utilities', {
+            maxtemp: maxtemp, mintemp: mintemp, actualtemp: actualtemp, description: description,
+            city: city, title: "Weather Report"
+          })
+        });
+      });
+    });
+  });
+
+});
+
 module.exports = router;
 
 //END OF FILE
