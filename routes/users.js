@@ -8,7 +8,9 @@ const { ObjectId } = require("mongodb");
 var pincode = require('pincode');
 const res = require("express/lib/response");
 const { request } = require("http");
+const urls = require('url');
 const { url } = require("inspector");
+const { stat } = require("fs");
 var router = express.Router();
 var ObjectID = require('mongodb').ObjectID;
 
@@ -468,7 +470,7 @@ router.get('/sms/', function (req, res) {
 });
 
 router.get('/utilities', (req, res) => {
-  res.render('utilities', { maxtemp: "", mintemp: "", actualtemp: "", description: "", city: "", title: "Weather Report" })
+  res.render('utilities', { maxtemp: "", mintemp: "", actualtemp: "", description: "", city: "", title: "Welcome to Weather Report Page" })
 });
 router.post('/utilities', (req, res) => {
   var city = req.body.txttown;
@@ -483,12 +485,50 @@ router.post('/utilities', (req, res) => {
           console.log("Minimum temperature: " + mintemp);
           res.render('utilities', {
             maxtemp: maxtemp, mintemp: mintemp, actualtemp: actualtemp, description: description,
-            city: city, title: "Weather Report"
+            city: city, title: "Welcome to Weather Report Page"
           })
         });
       });
     });
   });
+
+});
+
+/*TO GET ADDRESS FROM PIN CODE */
+router.get('/pincode', (req, res) => {
+  res.render('pincode', { postoffice:"",city: "", state: "",pincode:"", country: "", title: "Search address by pin code" });
+});
+router.post('/pincode', (req, res) => {
+  const pin = req.body.txtpin;
+  console.log(pin);
+  const request = require('request');
+  request({
+    url: "https://api.postalpincode.in/pincode/" + pin,
+    // var reqUrl="https://jsonplaceholder.typicode.com/posts";
+    json: true
+
+    //**al9103674
+  }, (err, response, body) => {
+    var finduser = body.find(user => body,undefined,4);
+    //console.log(JSON.parse(body,undefined,4))
+    //console.log(JSON.stringify(finduser.PostOffice[0].Name));
+    if(JSON.parse(JSON.stringify(finduser.Message!="No records found"))){
+    var Postoffice = JSON.parse(JSON.stringify(finduser.PostOffice[0].Name));
+    var District = JSON.parse(JSON.stringify(finduser.PostOffice[0].District));
+    var State = JSON.parse(JSON.stringify(finduser.PostOffice[0].State));
+    var Country = JSON.parse(JSON.stringify(finduser.PostOffice[0].Country));
+    var Pincode = JSON.parse(finduser.PostOffice[0].Pincode);
+
+    //var Pincode = JSON.stringify(finduser.PostOffice[0].Pincode);
+    console.log(Postoffice, District, State, Country, Pincode);
+    res.render('pincode', { postoffice:Postoffice,city: District, state: State,pincode:Pincode, country: Country, 
+      title: "Search address by pin code" });
+    } else {
+      console.log(JSON.parse(JSON.stringify(finduser.Message)));
+      res.render('pincode', { postoffice:"No records found",city: "", state: "",pincode:"", country: "", title: "Search address by pin code" });
+    }
+  })
+
 
 });
 

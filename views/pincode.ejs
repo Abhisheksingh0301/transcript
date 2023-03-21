@@ -1,0 +1,103 @@
+<title>
+    <%= title %>
+</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+<link rel='stylesheet' href='/stylesheets/style.css'>
+<link href="/css/bootstrap.min.css" rel="stylesheet">
+<script src="/js/jquery.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<%- include('header'); -%>
+    <section class="featured">
+        <div class="content-wrapper">
+            <h1 id="myHeader">
+                <%= title %>
+            </h1>
+        </div>
+    </section>
+    <hr>
+
+    <form action="/pincode/" method="POST">
+        <div class="form-group">
+            <table style="width: 60%; margin-left: auto;margin-right: auto;">
+                <tr>
+                    <td>
+                        <input type="text" id="txtpin" name="txtpin" class="form-control" maxlength="6" required style="
+                    font-weight: bold;
+                    color: darkgreen; 
+                    font-family: 'Times New Roman', Times, serif; 
+                  " style="text-transform: uppercase" placeholder="Pincode" value="<%= pincode %>" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label id="lblcity" name="lblcity">
+                            <%= postoffice %>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label id="lblcity" name="lblcity">
+                            <%= city %>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label id="lblstate" name="lblstate">
+                            <%= state %>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label id="lblcountry" name="lblcountry">
+                            <%= country %>
+                        </label>
+                    </td>
+                </tr>
+                <tr>
+                    <td><button type="submit" class="btn btn-success">
+                            <i class="fa fa-search" aria-hidden="true"></i>&nbsp;Search
+                        </button></td>
+                </tr>
+            </table>
+        </div>
+        <div class=" mx-4 my-2 card border-dark mb-3" style="width: 25rem; background-color:blanchedalmond; ">
+            <img src="https://www.complaintsboard.com/img/business/103475/200c200/india-post-department-of-posts.jpg"
+                class="card-img-top px-2" alt="No image" style="width:65%; text-align: center;margin: auto;">
+            <div class="card-body">
+                <!-- <h5 class="card-title" style="font-family:'Times New Roman', Times, serif; text-align:center; color:yellow; 
+                    background-color:brown; font-weight: bold;"> -->
+                    <table class="table table-bordered border-primary table-hover" style="margin-left: auto;margin-right: auto; background-color:lavender;">
+                        <tr>
+                            <td>Area</td>
+                            <td>
+                                <%= postoffice %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>City</td>
+                            <td>
+                                <%= city %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>State</td>
+                            <td>
+                                <%= state %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Country</td>
+                            <td>
+                                <%= country %>
+                            </td>
+                        </tr>
+                    </table>
+
+                <!-- </h5> -->
+            </div>
+        </div>
+        </div>
+    </form>
