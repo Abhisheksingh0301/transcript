@@ -1,3 +1,4 @@
+require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -25,7 +26,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 //Db connection
 mongoose.Promise=global.Promise;
 //mongoose.connect('mongodb://localhost:27017/school', {useNewUrlParser: true, useUnifiedTopology: true})
-mongoose.connect('mongodb+srv://abhijeet_04:abhijeet_04@cluster0-fddt1.azure.mongodb.net/xavier?retryWrites=true&w=majority',{
+//mongoose.connect(,{
+mongoose.connect(process.env.CONNECTION_STR,{
   useNewUrlParser: true
 , useUnifiedTopology: true
 })
@@ -33,7 +35,7 @@ mongoose.connect('mongodb+srv://abhijeet_04:abhijeet_04@cluster0-fddt1.azure.mon
  .then(()=>console.log('Connection successful'))
  //.catch((err)=>console.error );
  .catch((err)=>console.log('Connection error') );
-
+ 
 
 
 
